@@ -11,13 +11,13 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/auth")
 public class LoginController {
 
     private static final String SECRET_KEY = "kjjbhbjsdhhxcghijdsohjasdsohidhhdhd";
-    private static final Path USERS_FILE = Paths.get("../../docs/data.txt");
+    private static final Path USERS_FILE = Paths.get("./data.txt");
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {

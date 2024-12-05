@@ -1,15 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import React Router components
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Import React Router components
 import './App.css';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
+import ProtectedRoute from './component/ProtectRoute';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} /> {/* Login page */}
-        <Route path="/home" element={<Home />} /> {/* Home page */}
+        <Route path="/" element={!localStorage.getItem("token") ? <Login /> : <Navigate to="/home" />} /> 
+        <Route path="/home" element={
+           <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+        } />   
       </Routes>
     </Router>
   );
